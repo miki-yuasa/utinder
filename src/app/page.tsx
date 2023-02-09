@@ -1,6 +1,9 @@
+'use client'
 import Image from 'next/image'
 import { Inter, Roboto_Flex } from '@next/font/google'
 import styles from './page.module.css'
+
+import { Button } from '@/components/Button/Button'
 
 const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
 
@@ -12,26 +15,16 @@ export default function Home() {
           UTinder
         </h1>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          <Button variant='text'>ログイン</Button>
+          <Button variant='contained'>サインアップ</Button>
         </div>
       </div>
 
       <div className={styles.center}>
-        <h1>東京大学の教授を探す</h1>
+        <h1>東京大学の<b>教授</b>を探す</h1>
+      </div>
+      <div className={styles.center}>
+        <Button variant='text'>教科を探す</Button>
       </div>
 
       <div className={styles.grid}>
