@@ -17,7 +17,7 @@ export default function Home() {
           UTinder
         </h1>
         <div>
-          <Button variant='text'>ログイン</Button>
+          <Button variant='text' color='inherit'>ログイン</Button>
           <Button variant='contained'>サインアップ</Button>
         </div>
       </div>
@@ -26,7 +26,7 @@ export default function Home() {
         <h1>東京大学の<b>教授</b>を探す</h1>
       </div>
       <div className={styles.center}>
-        <Button variant='text'>教科を探す</Button>
+        <Button variant='text' color='inherit'><b>教科を探す</b></Button>
       </div>
       <div className={styles.grid}>
         <Grid container spacing={10} style={{ textAlign: "center" }}>
