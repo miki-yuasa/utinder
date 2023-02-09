@@ -1,17 +1,16 @@
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
+import { Inter, Roboto_Flex } from '@next/font/google'
 import styles from './page.module.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
+        <h1>
+          UTinder
+        </h1>
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -32,17 +31,7 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
+        <h1>東京大学の教授を探す</h1>
       </div>
 
       <div className={styles.grid}>
@@ -53,7 +42,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
+            評価の管理・編集
           </h2>
           <p className={inter.className}>
             Find in-depth information about Next.js features and API.
@@ -67,7 +56,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
+            匿名で評価を投稿
           </h2>
           <p className={inter.className}>Explore the Next.js 13 playground.</p>
         </a>
@@ -79,7 +68,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
+            投稿を評価
           </h2>
           <p className={inter.className}>
             Instantly deploy your Next.js site to a shareable URL with Vercel.
