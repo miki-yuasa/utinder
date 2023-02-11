@@ -5,6 +5,7 @@ import styles from './page.module.css'
 
 import { Button } from '@/components/Button/Button'
 import { Grid } from '@/components/Grid/Grid'
+import { Stack } from '@/components/Stack/Stack'
 
 // const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
 const inter = Noto_Sans_JP({
@@ -18,10 +19,10 @@ export default function Home() {
         <h1 className={inter.className}>
           UTinder
         </h1>
-        <div>
+        <Stack spacing={2} direction='row'>
           <Button variant='text' color='inherit'>ログイン</Button>
           <Button variant='contained'>サインアップ</Button>
-        </div>
+        </Stack>
       </div>
 
       <div className={styles.center}>
