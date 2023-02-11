@@ -1,19 +1,21 @@
 'use client'
 import Image from 'next/image'
-import { Inter, Roboto_Flex } from '@next/font/google'
+import { Roboto_Flex, Noto_Sans_JP } from '@next/font/google'
 import styles from './page.module.css'
 
 import { Button } from '@/components/Button/Button'
 import { Grid } from '@/components/Grid/Grid'
-import { Box } from '@mui/material'
 
-const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
-
+// const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
+const inter = Noto_Sans_JP({
+  weight: '400',
+  preload: false,
+})
 export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <h1>
+        <h1 className={inter.className}>
           UTinder
         </h1>
         <div>
@@ -23,7 +25,7 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <h1>東京大学の<b>教授</b>を探す</h1>
+        <h1 className={inter.className}>東京大学の<b>教授</b>を探す</h1>
       </div>
       <div className={styles.center}>
         <Button variant='text' color='inherit'><b>教科を探す</b></Button>
