@@ -7,7 +7,8 @@ import { Button } from '@/components/Button/Button'
 import { Grid } from '@/components/Grid/Grid'
 import { Stack } from '@/components/Stack/Stack'
 import { Autocomplete } from '@/components/Autocomplete/Autocomplete'
-import { TextField } from '@/components/TextField/TextField'
+import { TextField, TextFieldProps } from '@/components/TextField/TextField'
+
 const options = [{ id: 1, label: '数学概論' }, { id: 2, label: '英語基礎' }]
 
 // const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
@@ -37,7 +38,7 @@ export default function Home() {
           id="combo-box-demo"
           options={options}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="教科" />}
+          renderInput={(params: TextFieldProps) => <TextField {...params} label="教科" />}
         />
       </div>
       <div className={styles.center}>
