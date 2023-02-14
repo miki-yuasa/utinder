@@ -6,6 +6,9 @@ import styles from './page.module.css'
 import { Button } from '@/components/Button/Button'
 import { Grid } from '@/components/Grid/Grid'
 import { Stack } from '@/components/Stack/Stack'
+import { Autocomplete } from '@/components/Autocomplete/Autocomplete'
+import { TextField } from '@/components/TextField/TextField'
+const options = [{ id: 1, label: '数学概論' }, { id: 2, label: '英語基礎' }]
 
 // const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
 const inter = Noto_Sans_JP({
@@ -27,6 +30,15 @@ export default function Home() {
 
       <div className={styles.center}>
         <h1 className={inter.className}>東京大学の<b>教授</b>を探す</h1>
+      </div>
+      <div className={styles.center}>
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={options}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="教科" />}
+        />
       </div>
       <div className={styles.center}>
         <Button variant='text' color='inherit'><b>教科を探す</b></Button>
