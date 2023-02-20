@@ -1,6 +1,6 @@
 import { AppBar as MuiAppBar, AppBarProps } from "@mui/material";
 
-export const Button = ({ children, ...props }: AppBarProps) => {
+export const AppBar = ({ children, ...props }: AppBarProps) => {
     return (
         <MuiAppBar {...props}>
             {children}
