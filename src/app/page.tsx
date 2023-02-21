@@ -70,8 +70,8 @@ export default function Home(): JSX.Element {
                 </li>
               )
             }}
-            getOptionLabel={(option: Option) => option.label}
-            onInputChange={(event: KeyboardEvent, value: string) => {
+            getOptionLabel={(option: Option | string) => typeof option === 'string' ? option : option.label}
+            onInputChange={(event: any, value: string) => {
               if (event?.type === 'keydown' && event.key === 'Enter') {
                 const selectedOption = options.find((option) => option.label === value);
                 if (selectedOption) {

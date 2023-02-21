@@ -12,7 +12,7 @@ export const Navigation = ({ paddingTop = 12 }: { paddingTop?: number }) => {
         <AppBar elevation={0} position="static" color="transparent" sx={{ backdropFilter: "blur(20px)", paddingTop: paddingTop }}>
             <Container maxWidth='lg'>
                 <Toolbar>
-                    <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h4" sx={{ flexGrow: 1 }}>
                         <Link href={"/"}>UTinder</Link>
                     </Typography>
                     <Stack spacing={2} direction='row'>
