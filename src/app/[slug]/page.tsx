@@ -6,16 +6,24 @@ import { Footer } from "@/components/Footer/Footer";
 import { TextField, TextFieldProps } from "@/components/TextField/TextField";
 import { Typography } from "@/components/Typography/Typography";
 import { Navigation } from "@/features/navigation";
-import { usePathname } from 'next/navigation';
 
+const options: Option[] = [
+    { id: 1, label: '東京大学', slug: 'utokyo', colleges: ['理学部', '工学部'] },
+    { id: 2, label: '慶應義塾大学', slug: 'keio', colleges: ['理工学部', '経済学部'] }
+]
 
-export default function Page({ params }: { params: { slug: string } }) {
-    const uni_slug = usePathname()?.replace("/", "")
-
+export default function UniPage({ params }: { params: { slug: string } }) {
+    const options: Option[] = getUniversity();
     const { slug } = params;
-    const options = getUniversity()
-    const uni = options.find(option => option.slug === uni_slug)!
+
+    let unis = options.filter(option => option.slug === slug)
+    const defaultUni = options[0]
+    unis.push(defaultUni)
+
+    const uni = unis[0]
     const uni_name: string = uni.label
+    const collegeOptions: string[] = uni.colleges
+
     return (<>
         <Navigation />
         <main style={{ minHeight: '50vh' }}>
@@ -27,7 +35,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        options={uni.colleges}
+                        options={collegeOptions}
                         sx={{ width: 300 }}
                         renderInput={(params: TextFieldProps) => <TextField {...params} label="学部名" />}
                     />
@@ -53,9 +61,6 @@ type Option = {
     colleges: string[]
 }
 const getUniversity = () => {
-    const options: Option[] = [
-        { id: 1, label: '東京大学', slug: 'utokyo', colleges: ['理学部', '工学部'] },
-        { id: 2, label: '慶應義塾大学', slug: 'keio', colleges: ['理工学部', '経済学部'] }
-    ]
+
     return options
 }
