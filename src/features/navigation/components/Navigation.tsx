@@ -13,7 +13,7 @@ export const Navigation = ({ paddingTop = 12 }: { paddingTop?: number }) => {
                 <Toolbar>
                     <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>UTinder</Typography>
                     <Stack spacing={2} direction='row'>
-                        <Button variant='text' color='inherit'>ログイン</Button>
+                        <Button variant='text' >ログイン</Button>
                         <Button variant='contained'>サインアップ</Button>
                     </Stack>
                 </Toolbar>
