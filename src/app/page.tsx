@@ -1,7 +1,8 @@
 'use client'
 import Image from 'next/image'
 import { Roboto_Flex, Noto_Sans_JP } from '@next/font/google'
-import styles from './page.module.css'
+import match from 'autosuggest-highlight/match'
+import parse from 'autosuggest-highlight/parse'
 
 import { Button } from '@/components/Button/Button'
 import { Grid } from '@/components/Grid/Grid'
@@ -13,8 +14,15 @@ import { Container } from '@/components/Container/Container'
 import { Box } from '@/components/Box/Box'
 import { Typography } from '@/components/Typography/Typography'
 import { Footer } from '@/components/Footer/Footer'
+import Link from 'next/link'
+import { display } from '@mui/system'
 
-const options = [{ id: 1, label: '東京大学' }, { id: 2, label: '慶應義塾大学' }]
+type Option = {
+  id: number
+  label: string
+  slug: string
+}
+const options: Option[] = [{ id: 1, label: '東京大学', slug: 'utokyo' }, { id: 2, label: '慶應義塾大学', slug: 'keio' }]
 
 // const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
 const inter = Noto_Sans_JP({
@@ -36,6 +44,26 @@ export default function Home() {
             options={options}
             sx={{ width: 300 }}
             renderInput={(params: TextFieldProps) => <TextField {...params} label="大学名" />}
+            renderOption={(props: object, option: Option, { inputValue }: { inputValue: string }) => {
+              const matches = match(option.label, inputValue, { insideWords: true });
+              const parts = parse(option.label, matches);
+              return (
+                <li {...props} style={{ paddingRight: 0 }} >
+                  <Link href={`/${option.slug}`} style={{ margin: 0, display: 'block', width: '100%' }}>
+                    {parts.map((part, index) => (
+                      <span
+                        key={index}
+                        style={{
+                          fontWeight: part.highlight ? 700 : 400,
+                        }}
+                      >
+                        {part.text}
+                      </span>
+                    ))}
+                  </Link>
+                </li>
+              )
+            }}
           />
         </Box>
         <Box justifyContent={'center'} display='flex' marginTop={15}>
