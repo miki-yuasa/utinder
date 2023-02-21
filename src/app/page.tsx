@@ -4,9 +4,7 @@ import { Roboto_Flex, Noto_Sans_JP } from '@next/font/google'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
 
-import { Button } from '@/components/Button/Button'
 import { Grid } from '@/components/Grid/Grid'
-import { Stack } from '@/components/Stack/Stack'
 import { Autocomplete } from '@/components/Autocomplete/Autocomplete'
 import { TextField, TextFieldProps } from '@/components/TextField/TextField'
 import { Navigation } from '@/features/navigation'
@@ -15,7 +13,6 @@ import { Box } from '@/components/Box/Box'
 import { Typography } from '@/components/Typography/Typography'
 import { Footer } from '@/components/Footer/Footer'
 import Link from 'next/link'
-import { display } from '@mui/system'
 
 type Option = {
   id: number
@@ -48,8 +45,8 @@ export default function Home() {
               const matches = match(option.label, inputValue, { insideWords: true });
               const parts = parse(option.label, matches);
               return (
-                <li {...props} style={{ paddingRight: 0 }} >
-                  <Link href={`/${option.slug}`} style={{ margin: 0, display: 'block', width: '100%' }}>
+                <li {...props} style={{ padding: 0 }} >
+                  <Link href={`/${option.slug}`} style={{ margin: 0, padding: 8, display: 'block', width: '100%' }}>
                     {parts.map((part, index) => (
                       <span
                         key={index}
