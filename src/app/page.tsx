@@ -29,7 +29,7 @@ const inter = Noto_Sans_JP({
   preload: false,
 })
 
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactNode {
   const router = useRouter();
 
   const handleOptionSelected = (option: Option) => {
