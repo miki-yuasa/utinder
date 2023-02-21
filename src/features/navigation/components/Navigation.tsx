@@ -7,7 +7,7 @@ import { Container } from "@/components/Container/Container"
 
 export const Navigation = () => {
     return (
-        <AppBar position="static" color="transparent" sx={{ backdropFilter: "blur(20px)" }}>
+        <AppBar position="static" color="transparent" sx={{ backdropFilter: "blur(20px)", paddingTop: 6 }}>
             <Container maxWidth='lg'>
                 <Toolbar>
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>UTinder</Typography>
