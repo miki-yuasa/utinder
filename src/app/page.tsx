@@ -7,8 +7,9 @@ import { Button } from '@/components/Button/Button'
 import { Grid } from '@/components/Grid/Grid'
 import { Stack } from '@/components/Stack/Stack'
 import { Autocomplete } from '@/components/Autocomplete/Autocomplete'
-import { TextField } from '@/components/TextField/TextField'
-const options = [{ id: 1, label: '数学概論' }, { id: 2, label: '英語基礎' }]
+import { TextField, TextFieldProps } from '@/components/TextField/TextField'
+
+const options = [{ id: 1, label: '東京大学' }, { id: 2, label: '慶應義塾大学' }]
 
 // const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
 const inter = Noto_Sans_JP({
@@ -29,7 +30,7 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <h1 className={inter.className}>東京大学の<b>教授</b>を探す</h1>
+        <h1 className={inter.className}><b>大学</b>を探す</h1>
       </div>
       <div className={styles.center}>
         <Autocomplete
@@ -37,11 +38,8 @@ export default function Home() {
           id="combo-box-demo"
           options={options}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="教科" />}
+          renderInput={(params: TextFieldProps) => <TextField {...params} label="大学名" />}
         />
-      </div>
-      <div className={styles.center}>
-        <Button variant='text' color='inherit'><b>教科を探す</b></Button>
       </div>
       <div className={styles.grid}>
         <Grid container spacing={10} style={{ textAlign: "center" }}>
