@@ -12,6 +12,7 @@ import { Navigation } from '@/features/navigation'
 import { Container } from '@/components/Container/Container'
 import { Box } from '@/components/Box/Box'
 import { Typography } from '@/components/Typography/Typography'
+import { Footer } from '@/components/Footer/Footer'
 
 const options = [{ id: 1, label: '東京大学' }, { id: 2, label: '慶應義塾大学' }]
 
@@ -23,7 +24,7 @@ const inter = Noto_Sans_JP({
 export default function Home() {
   return (<>
     <Navigation />
-    <main >
+    <main style={{ minHeight: '50vh' }}>
       <Container maxWidth='lg'>
         <Box marginTop={30}>
           <Typography variant="h3" align="center"> <b>大学</b>を探す</Typography>
@@ -58,5 +59,6 @@ export default function Home() {
         </Box>
       </Container>
     </main>
+    <Footer />
   </>)
 }
