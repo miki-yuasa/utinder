@@ -21,9 +21,9 @@ const inter = Noto_Sans_JP({
   preload: false,
 })
 export default function Home() {
-  return (
+  return (<>
+    <Navigation />
     <main >
-      <Navigation />
       <Container maxWidth='lg'>
         <Box marginTop={30}>
           <Typography variant="h3" align="center"> <b>大学</b>を探す</Typography>
@@ -58,5 +58,5 @@ export default function Home() {
         </Box>
       </Container>
     </main>
-  )
+  </>)
 }

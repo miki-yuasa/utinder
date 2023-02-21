@@ -9,16 +9,17 @@ import { Navigation } from "@/features/navigation";
 export default function Page({ params }: { params: { slug: string } }) {
     const { slug } = params;
 
-    return (
+    return (<>
+        <Navigation />
         <main>
-            <Navigation />
+
             <Container maxWidth='lg' >
                 <Box marginTop={30}>
                     <Typography variant="h3" align="center"> <b>東京大学</b>の授業評定を見る</Typography>
                 </Box>
             </Container>
         </main>
-    )
+    </>)
 }
 
 export async function generateStaticParams() {
