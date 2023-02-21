@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Roboto_Flex, Noto_Sans_JP } from '@next/font/google'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
+import { useRouter } from 'next/navigation'
 
 import { Grid } from '@/components/Grid/Grid'
 import { Autocomplete } from '@/components/Autocomplete/Autocomplete'
@@ -13,6 +14,7 @@ import { Box } from '@/components/Box/Box'
 import { Typography } from '@/components/Typography/Typography'
 import { Footer } from '@/components/Footer/Footer'
 import Link from 'next/link'
+import React from 'react'
 
 type Option = {
   id: number
@@ -26,7 +28,14 @@ const inter = Noto_Sans_JP({
   weight: '400',
   preload: false,
 })
-export default function Home() {
+
+export default function Home(): JSX.Element {
+  const router = useRouter();
+
+  const handleOptionSelected = (option: Option) => {
+    router.push(`/${option.slug}`);
+  };
+
   return (<>
     <Navigation />
     <main style={{ minHeight: '50vh' }}>
@@ -60,6 +69,15 @@ export default function Home() {
                   </Link>
                 </li>
               )
+            }}
+            getOptionLabel={(option: Option) => option.label}
+            onInputChange={(event: KeyboardEvent, value: string) => {
+              if (event?.type === 'keydown' && event.key === 'Enter') {
+                const selectedOption = options.find((option) => option.label === value);
+                if (selectedOption) {
+                  handleOptionSelected(selectedOption);
+                }
+              }
             }}
           />
         </Box>
