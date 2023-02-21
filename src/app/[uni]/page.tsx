@@ -7,8 +7,6 @@ import { Navigation } from "@/features/navigation";
 import { usePathname } from 'next/navigation';
 
 
-const uni_slug: string = window.location.pathname.replace('/', '')
-
 export default function Page({ params }: { params: { slug: string } }) {
     const uni_slug = usePathname()?.replace("/", "")
 
