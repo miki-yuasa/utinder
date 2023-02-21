@@ -4,17 +4,16 @@ import { Container } from "@/components/Container/Container";
 import { Footer } from "@/components/Footer/Footer";
 import { Typography } from "@/components/Typography/Typography";
 import { Navigation } from "@/features/navigation";
+import { usePathname } from 'next/navigation';
 
-type Option = {
-    id: number
-    label: string
-    slug: string
-}
+
+const uni_slug: string = window.location.pathname.replace('/', '')
 
 export default function Page({ params }: { params: { slug: string } }) {
+    const uni_slug = usePathname()?.replace("/", "")
+
     const { slug } = params;
     const options = getUniversity()
-    const uni_slug: string = window.location.pathname.replace('/', '')
     const uni_name: string = options.find(option => option.slug === uni_slug)?.label!
     return (<>
         <Navigation />
@@ -36,7 +35,11 @@ export async function generateStaticParams() {
         slug: uni.slug,
     }));
 }
-
+type Option = {
+    id: number
+    label: string
+    slug: string
+}
 const getUniversity = () => {
     const options: Option[] = [{ id: 1, label: '東京大学', slug: 'utokyo' }, { id: 2, label: '慶應義塾大学', slug: 'keio' }]
     return options
