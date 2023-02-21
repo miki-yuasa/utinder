@@ -6,3 +6,5 @@ export const Button = ({ children, ...props }: ButtonProps) => {
             {children}
         </MuiButoon>)
 }
+
+export type { ButtonProps }
