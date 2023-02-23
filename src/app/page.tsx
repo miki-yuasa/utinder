@@ -38,7 +38,7 @@ export default function Home(): ReactNode {
 
   useEffect(() => {
     const access_db = async (db: Firestore) => {
-      const unis = await getUniversities(db) as University[]
+      const unis = await getUniversities(db)
       setState(unis)
     };
     access_db(db)

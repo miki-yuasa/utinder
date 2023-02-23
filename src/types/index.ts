@@ -14,7 +14,10 @@ export type MetaProps = {
 export type University = {
     label: string
     url: string
-    colleges: College[]
+    colleges: {
+        label: string
+        name: string
+    }
 }
 
 export type College = {
