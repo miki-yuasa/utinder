@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -5,5 +7,7 @@ const nextConfig = {
   },
   output: 'standalone'
 }
+
+dotenv.config()
 
 module.exports = nextConfig
