@@ -14,9 +14,9 @@ const options: Option[] = [
 
 export default function UniPage({ params }: { params: { slug: string } }) {
     const options: Option[] = getUniversity();
-    const { slug } = params;
+    const { uni_url } = params;
 
-    let unis = options.filter(option => option.slug === slug)
+    let unis = options.filter(option => option.slug === uni_url)
     const defaultUni = options[0]
     unis.push(defaultUni)
 
@@ -50,7 +50,7 @@ export async function generateStaticParams() {
     const unis = await getUniversity();
 
     return unis.map((uni) => ({
-        slug: uni.slug,
+        uni_url: uni.uni_url,
     }));
 }
 
