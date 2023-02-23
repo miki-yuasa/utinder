@@ -25,5 +25,7 @@ const firebaseConfig: FirebaseOptions = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+//export const analytics = getAnalytics(app);
 export const db = getFirestore(app)
+
+export { getUniversities } from './api/getUniversities'

@@ -1,9 +1,13 @@
 'use client'
+import { useEffect, useState, ReactNode } from 'react';
 import Image from 'next/image'
+import Link from 'next/link'
 import { Roboto_Flex, Noto_Sans_JP } from '@next/font/google'
+import { useRouter } from 'next/navigation'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
-import { useRouter } from 'next/navigation'
+
+import { getUniversities, db } from '@/features/database'
 
 import { Grid } from '@/components/Grid/Grid'
 import { Autocomplete } from '@/components/Autocomplete/Autocomplete'
@@ -13,15 +17,9 @@ import { Container } from '@/components/Container/Container'
 import { Box } from '@/components/Box/Box'
 import { Typography } from '@/components/Typography/Typography'
 import { Footer } from '@/components/Footer/Footer'
-import Link from 'next/link'
-import React from 'react'
+import { Firestore } from 'firebase/firestore/lite';
+import { University } from '@/types';
 
-type Option = {
-  id: number
-  label: string
-  slug: string
-}
-const options: Option[] = [{ id: 1, label: '東京大学', slug: 'utokyo' }, { id: 2, label: '慶應義塾大学', slug: 'keio' }]
 
 // const inter = Roboto_Flex({ subsets: ["latin"] })// Inter({ subsets: ['latin'] })
 const inter = Noto_Sans_JP({
@@ -29,12 +27,23 @@ const inter = Noto_Sans_JP({
   preload: false,
 })
 
-export default function Home(): JSX.Element {
+export default function Home(): ReactNode {
   const router = useRouter();
 
-  const handleOptionSelected = (option: Option) => {
-    router.push(`/${option.slug}`);
+  const handleOptionSelected = (option: University) => {
+    router.push(`/${option.url}`);
   };
+
+  const [unis_state, setState] = useState<University[]>([]);
+
+  useEffect(() => {
+    const access_db = async (db: Firestore) => {
+      const unis = await getUniversities(db) as University[]
+      setState(unis)
+    };
+    access_db(db)
+  }, [])
+
 
   return (<>
     <Navigation />
@@ -47,15 +56,15 @@ export default function Home(): JSX.Element {
           <Autocomplete
             disablePortal
             id="combo-box-demo"
-            options={options}
+            options={unis_state}
             sx={{ width: 300 }}
             renderInput={(params: TextFieldProps) => <TextField {...params} label="大学名" />}
-            renderOption={(props: object, option: Option, { inputValue }: { inputValue: string }) => {
+            renderOption={(props: object, option: University, { inputValue }: { inputValue: string }) => {
               const matches = match(option.label, inputValue, { insideWords: true });
               const parts = parse(option.label, matches);
               return (
                 <li {...props} style={{ padding: 0 }} >
-                  <Link href={`/${option.slug}`} style={{ margin: 0, padding: 8, display: 'block', width: '100%' }}>
+                  <Link href={`/${option.url}`} style={{ margin: 0, padding: 8, display: 'block', width: '100%' }}>
                     {parts.map((part, index) => (
                       <span
                         key={index}
@@ -70,10 +79,10 @@ export default function Home(): JSX.Element {
                 </li>
               )
             }}
-            getOptionLabel={(option: Option | string) => typeof option === 'string' ? option : option.label}
+            getOptionLabel={(option: University | string) => typeof option === 'string' ? option : option.label}
             onInputChange={(event: any, value: string) => {
               if (event?.type === 'keydown' && event.key === 'Enter') {
-                const selectedOption = options.find((option) => option.label === value);
+                const selectedOption = unis_state.find((option) => option.label === value);
                 if (selectedOption) {
                   handleOptionSelected(selectedOption);
                 }

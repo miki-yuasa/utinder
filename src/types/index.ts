@@ -10,3 +10,14 @@ export type MetaProps = {
     ogSiteName?: string
     ogLocale?: string
 };
+
+export type University = {
+    label: string
+    url: string
+    colleges: College[]
+}
+
+export type College = {
+    label: string
+    name: string
+}
