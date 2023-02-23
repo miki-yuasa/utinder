@@ -12,7 +12,7 @@ const options: Option[] = [
     { id: 2, label: '慶應義塾大学', slug: 'keio', colleges: ['理工学部', '経済学部'] }
 ]
 
-export default function UniPage({ params }: { params: { slug: string } }) {
+export default function UniPage({ params }: { params: { uni_url: string } }) {
     const options: Option[] = getUniversity();
     const { uni_url } = params;
 
@@ -50,7 +50,7 @@ export async function generateStaticParams() {
     const unis = await getUniversity();
 
     return unis.map((uni) => ({
-        uni_url: uni.uni_url,
+        uni_url: uni.slug,
     }));
 }
 
