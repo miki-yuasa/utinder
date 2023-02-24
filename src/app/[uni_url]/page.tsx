@@ -5,7 +5,10 @@ import { Container } from "@/components/Container/Container";
 import { Footer } from "@/components/Footer/Footer";
 import { TextField, TextFieldProps } from "@/components/TextField/TextField";
 import { Typography } from "@/components/Typography/Typography";
+import { db, getColleges } from "@/features/database";
 import { Navigation } from "@/features/navigation";
+import { Firestore } from "firebase/firestore/lite";
+import { useEffect, useState } from "react";
 
 const options: Option[] = [
     { id: 1, label: '東京大学', slug: 'utokyo', colleges: ['理学部', '工学部'] },
@@ -23,6 +26,16 @@ export default function UniPage({ params }: { params: { uni_url: string } }) {
     const uni = unis[0]
     const uni_name: string = uni.label
     const collegeOptions: string[] = uni.colleges
+
+    const [collegeState, setState] = useState();
+
+    useEffect(() => {
+        const access_db = async (db: Firestore) => {
+            const colleges = await getColleges(db)
+            setState(colleges)
+        };
+        access_db(db)
+    }, []);
 
     return (<>
         <Navigation />

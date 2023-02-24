@@ -29,3 +29,4 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app)
 
 export { getUniversities } from './api/getUniversities'
+export { getColleges } from './api/getColleges'
